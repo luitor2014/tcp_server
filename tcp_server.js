@@ -41,6 +41,9 @@ var server = net.createServer(function(socket) {
 });
 
 var server_host = process.env.YOUR_HOST;
-server.listen(PORT, server_host, function() {
+server.listen(PORT, function() {
     console.log('port: '+ PORT+ " and host: "+server_host);
 });
+setInterval(function(){
+  console.log("Escuchando...");
+},3000);
