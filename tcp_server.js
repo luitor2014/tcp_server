@@ -1,39 +1,31 @@
+    var net = require('net');
+//Keep track of connections
+var count = 0;
 
-var PORT = process.env.PORT;
-var net = require('net');
-
-var clients = [];
-
-var server = net.createServer(function(socket) {
-
-  socket.name = socket.remoteAddress + ":" + socket.remotePort;
-  clients.push(socket);
-  //socket.write('Echo server\r\n');
-  //socket.pipe(socket);
-  socket.on('data', function (data) {
-    console.log("Client: "+data.toString());
-    //broadcast(socket.name + "> " + data, socket);
-     socket.write(data.toString());
-     
-     //enviamos a todos los usuarios
-     broadcast(data.toString(), socket);
-  });
-
-  // Send a message to all clients
-  function broadcast(message, sender) {
-    clients.forEach(function (client) {
-    // Don't want to send it to sender
-    if (client === sender) return;
-      client.write(message);
+var server = net.createServer(function (connection) {
+    connection.setEncoding('utf8');
+    connection.write(
+        '\n > welcome to \033[92mnode-chat\033[39m!' +
+        '\n > ' +count+ ' other people are connected at this time.' +
+        '\n > please write your name and press enter: '
+    );
+    count++;
+    connection.on('data', function (data) {
+       console.log(data);
     });
-    // Log it to the server output too
-    process.stdout.write(message)
-  }
+
+    connection.on('close', function (error) {
+        console.log('Error: ' + error);
+        count--;
+    });
 });
 
-server.listen(PORT,'127.0.0.1', function() {
-    console.log('port: '+ PORT);
+var port = process.env.PORT || 1337;
+
+server.listen(port, function () {
+    console.log('\033[90m   server listening on *:' + port + '\033[39m');
 });
+
 setInterval(function(){
   console.log("Escuchando...");
 },4000);
