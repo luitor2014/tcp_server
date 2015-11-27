@@ -1,8 +1,8 @@
 var net = require('net');
 var sys = require('sys');
 
-var port = process.env.PORT || 3000;
-var host = 'tcpserver123.herokuapp.com'; // heroku-app-name when deployed
+var port = process.env.PORT || 1337;
+var host = 'tcpserver123'; // heroku-app-name when deployed
 
 var server = net.createServer(function (socket) { 
 
@@ -10,7 +10,7 @@ var server = net.createServer(function (socket) {
    socket.write("Hello Dude!\n");
    socket.addListener("data", function (data) {
           // do stuff with (data) from client here 
-          console.log(data);
+          console.log(data.toString());
      });
    });
 
