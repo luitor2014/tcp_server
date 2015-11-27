@@ -1,30 +1,23 @@
-    var net = require('net');
-//Keep track of connections
-var count = 0;
+var net = require('net');
+var sys = require('sys');
 
-var server = net.createServer(function (connection) {
-    connection.setEncoding('utf8');
-    connection.write(
-        '\n > welcome to \033[92mnode-chat\033[39m!' +
-        '\n > ' +count+ ' other people are connected at this time.' +
-        '\n > please write your name and press enter: '
-    );
-    count++;
-    connection.on('data', function (data) {
-       console.log(data);
-    });
+var port = process.env.PORT || 3000;
+var host = 'localhost'; // heroku-app-name when deployed
 
-    connection.on('close', function (error) {
-        console.log('Error: ' + error);
-        count--;
-    });
-});
+var server = net.createServer(function (socket) { 
 
-var port = process.env.PORT || 1337;
+   sys.puts("Connection from " + socket.remoteAddress);
+   socket.write("Hello Dude!\n");
+   socket.addListener("data", function (data) {
+          // do stuff with (data) from client here 
+          console.log(data);
+     });
+   });
 
-server.listen(port, function () {
-    console.log('\033[90m   server listening on *:' + port + '\033[39m');
-});
+server.listen(port, host);
+
+    console.log('\033[90m   server listening on *:' + port + '\033[39m'+' host:'+host);
+
 
 setInterval(function(){
   console.log("Escuchando...");
