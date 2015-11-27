@@ -40,6 +40,7 @@ var server = net.createServer(function(socket) {
   });
 });
 
-
-server.listen(PORT);
-console.log("Servidor TCP... PORT: "+PORT);
+var server_host = process.env.YOUR_HOST;
+server.listen(PORT, server_host, function() {
+    console.log('port: '+ PORT+ " and host: "+server_host);
+});
