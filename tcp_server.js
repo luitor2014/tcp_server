@@ -33,4 +33,4 @@ var server = net.createServer(function(socket) {
 
 
 server.listen(PORT);
-console.log("Servidor TCP...");
+console.log("Servidor TCP... PORT: "+PORT);
