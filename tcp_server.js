@@ -14,7 +14,7 @@ var server = net.createServer(function (socket) {
      });
    });
 
-server.listen(port, host);
+server.listen(port);
 
     console.log('\033[90m   server listening on *:' + port + '\033[39m'+' host:'+host);
 
