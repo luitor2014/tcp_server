@@ -1,0 +1,19 @@
+{
+  "name": "tcp_server",
+  "version": "1.0.0",
+  "description": "provando mi chat",
+  "main": "tcp_server.js",
+  "dependencies": {
+    "socket.io": "1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node tcp_server.js"
+  },
+  "engines": {
+      "node": "0.8.3"
+  },
+  "author": "Luis Torres Carpio",
+  "license": "ISC"
+}
+
