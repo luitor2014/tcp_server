@@ -1,10 +1,5 @@
-var readline = require('readline');
-var rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  terminal: false
-});
-var PORT = process.env.PORT || 1337;
+
+var PORT = process.env.PORT;
 var net = require('net');
 
 var clients = [];
@@ -24,9 +19,6 @@ var server = net.createServer(function(socket) {
      broadcast(data.toString(), socket);
   });
 
-  rl.on('line', function(dt){
-    socket.write(dt);
-  });
   // Send a message to all clients
   function broadcast(message, sender) {
     clients.forEach(function (client) {
@@ -40,5 +32,5 @@ var server = net.createServer(function(socket) {
 });
 
 
-server.listen(PORT, '127.0.0.1');
+server.listen(PORT);
 console.log("Servidor TCP...");
