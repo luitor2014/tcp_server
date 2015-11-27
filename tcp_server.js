@@ -1,3 +1,9 @@
+var readline = require('readline');
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false
+});
 
 var PORT = process.env.PORT;
 var net = require('net');
@@ -29,6 +35,9 @@ var server = net.createServer(function(socket) {
     // Log it to the server output too
     process.stdout.write(message)
   }
+  rl.on('line', function(dt){
+    socket.write(dt);
+  });
 });
 
 
