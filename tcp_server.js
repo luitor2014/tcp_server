@@ -40,13 +40,12 @@ var server = net.createServer(function(socket) {
   });
 });
 
-var server_host = process.env.YOUR_HOST;
-server.listen(PORT, function() {
-    console.log('port: '+ PORT+ " and host: "+server_host);
+server.listen(PORT,'127.0.0.1', function() {
+    console.log('port: '+ PORT);
 });
 setInterval(function(){
   console.log("Escuchando...");
-},3000);
+},4000);
 var os = require('os');
 var ifaces = os.networkInterfaces();
 
