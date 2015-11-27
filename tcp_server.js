@@ -18,7 +18,7 @@ var server = net.createServer(function(socket) {
   socket.on('data', function (data) {
     console.log("Client: "+data.toString());
     //broadcast(socket.name + "> " + data, socket);
-     //socket.write(data.toString());
+     socket.write(data.toString());
      
      //enviamos a todos los usuarios
      broadcast(data.toString(), socket);
