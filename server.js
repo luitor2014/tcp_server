@@ -3,7 +3,7 @@ var net = require('net');
 var count = 0;
 var port = process.env.PORT || 1337;
 var host = 'localhost'; // heroku-app-name when deployed
-
+var server_host = process . env . YOUR_HOST ||  '0.0.0.0' ; 
 var server = net.createServer(function (socket) { 
 
   // sys.puts("Connection from " + socket.remoteAddress);
@@ -19,7 +19,7 @@ var server = net.createServer(function (socket) {
     });
    });
 
-server.listen(port,host);
+server.listen(port,server_host);
 
     console.log('server listening on: ' + port +' host: '+host);
 
