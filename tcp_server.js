@@ -2,7 +2,7 @@ var net = require('net');
 var sys = require('sys');
 
 var port = process.env.PORT || 1337;
-var host = 'tcpserver123'; // heroku-app-name when deployed
+var host = 'tcpserver123.herokuapp.com'; // heroku-app-name when deployed
 
 var server = net.createServer(function (socket) { 
 
@@ -14,7 +14,7 @@ var server = net.createServer(function (socket) {
      });
    });
 
-server.listen(port);
+server.listen(port, host);
 
     console.log('\033[90m   server listening on *:' + port + '\033[39m'+' host:'+host);
 
