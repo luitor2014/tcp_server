@@ -1,5 +1,5 @@
 {
-  "name": "semaforo luis",
+  "name": "tcp_server",
   "version": "1.0.0",
   "description": "provando mi semafo",
   "main": "server.js",
