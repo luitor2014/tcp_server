@@ -2,7 +2,7 @@ var net = require('net');
 //var sys = require('sys');
 
 var port = process.env.PORT || 1337;
-var host = 'tcpserver123'; // heroku-app-name when deployed
+var host = 'tcpserver123.herokuapp.com'; // heroku-app-name when deployed
 
 var server = net.createServer(function (socket) { 
 
