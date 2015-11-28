@@ -1,6 +1,6 @@
 var net = require('net');
 //var sys = require('sys');
-
+var count = 0;
 var port = process.env.PORT || 1337;
 var host = 'localhost'; // heroku-app-name when deployed
 
@@ -12,6 +12,11 @@ var server = net.createServer(function (socket) {
           // do stuff with (data) from client here 
           console.log(data.toString());
      });
+     
+     socket.on('close', function (error) {
+        console.log('Error: ' + error);
+        count--;
+    });
    });
 
 server.listen(port,host);
