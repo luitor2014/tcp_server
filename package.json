@@ -2,13 +2,10 @@
   "name": "chatLuisT",
   "version": "1.0.0",
   "description": "provando mi chat",
-  "main": "tcp_server.js",
   "dependencies": {
     "express": "4.12.3",
     "nodemon": "1.3.7",
-    "socket.io": "1.2.1",
-    "consolidate": "0.8.0",
-    "jade": "0.28.1"
+    "socket.io": "1.2.1"
   },
   "devDependencies": {},
   "scripts": {
