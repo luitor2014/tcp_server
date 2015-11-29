@@ -1,16 +1,28 @@
-# Load the net module to create a tcp server.
-net = require("net")
+express = require("express")
+http    = require("http")
+qs      = require("querystring")
+url     = require("url")
 
-# Creates a new TCP server. The handler argument is automatically set as a listener for the 'connection' event
-server = net.createServer((socket) ->
-  
-  # Every time someone connects, tell them hello and then close the connection.
-  console.log "Connection from " + socket.remoteAddress
-  socket.end "Hello World\n"
-)
-port = process.env.PORT
-# Fire up the server bound to port 7000 on localhost
-server.listen port
+proxy = url.parse(process.env.PROXIMO_URL)
 
-# Put a friendly message on the terminal
-console.log "TCP server listening on port "+ port +" at localhost."
+app = express.createServer(
+  express.logger())
+
+app.get "/*", (req, res) ->
+  headers =
+    "Proxy-Authorization": "Basic #{new Buffer(proxy.auth).toString("base64")}"
+    "Host": "httpbin.org"
+  delete req.headers.host
+  headers[key] = val for key, val of req.headers
+
+  options =
+    hostname: proxy.hostname
+    port: proxy.port || 80
+    path: "http://httpbin.org/#{req.params[0]}?#{qs.stringify(req.query)}"
+    headers: headers
+
+  http.get options, (httpbin_res) ->
+    res.writeHead httpbin_res.statusCode, httpbin_res.headers
+    httpbin_res.pipe(res)
+
+app.listen process.env.PORT || 5000
