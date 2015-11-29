@@ -4,7 +4,7 @@ proxy = url.parse(process.env.PROXIMO_URL)
 //var sys = require('sys');
 var count = 0;
 var port = process.env.PORT || 1337;
-var host = proxy.hostname; // heroku-app-name when deployed
+var host = '54.235.132.133'; // heroku-app-name when deployed
 var server_host = "tcpserver123.herokuapp.com"; 
 var server = net.createServer(function (socket) { 
 
