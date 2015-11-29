@@ -24,5 +24,6 @@ app.get "/*", (req, res) ->
   http.get options, (httpbin_res) ->
     res.writeHead httpbin_res.statusCode, httpbin_res.headers 
     httpbin_res.pipe(res)
-
-app.listen process.env.PORT || 5000
+port = process.env.PORT || 5000
+app.listen port
+console.log "PUERTO ES: "+port
