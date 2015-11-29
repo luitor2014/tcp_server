@@ -18,7 +18,7 @@ app.get "/*", (req, res) ->
   options =
     hostname: proxy.hostname
     port: proxy.port || 80
-    path: "http://httpbin.org/#{req.params[0]}?#{qs.stringify(req.query)}"
+    path: "http://directorioilo.com"
     headers: headers
 
   http.get options, (httpbin_res) ->
