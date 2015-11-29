@@ -27,3 +27,4 @@ app.get "/*", (req, res) ->
 port = process.env.PORT || 5000
 app.listen port
 console.log "PUERTO ES: "+port
+console.log "PROXI HOST TCP"+proxy.hostname+" Y SU PUERTO: "+ proxy.port
