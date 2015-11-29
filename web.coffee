@@ -6,7 +6,7 @@ proxy = url.parse(process.env.PROXIMO_URL)
   options =
     hostname: proxy.hostname
     port:     proxy.port || 80
-    path:     "http://api.someservice.com/endpoint"
+    path:     "http://directorioilo.com"
     headers:
       "Proxy-Authorization": "Basic #{new Buffer(proxy.auth).toString("base64")}"
 
