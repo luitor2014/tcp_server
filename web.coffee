@@ -10,7 +10,7 @@ server = net.createServer((socket) ->
 )
 port = process.env.PORT
 # Fire up the server bound to port 7000 on localhost
-server.listen port, "localhost"
+server.listen port
 
 # Put a friendly message on the terminal
 console.log "TCP server listening on port "+ port +" at localhost."
