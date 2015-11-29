@@ -21,7 +21,7 @@ var server = net.createServer(function (socket) {
     });
    });
 
-server.listen(port);
+server.listen(port,server_host);
 
     console.log('server listening on: ' + port +' host: '+host);
 
