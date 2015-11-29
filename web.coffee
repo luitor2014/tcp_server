@@ -1,28 +1,15 @@
-express = require("express")
-http    = require("http")
-qs      = require("querystring")
-url     = require("url")
+http = require("http")
+url  = require("url")
 
 proxy = url.parse(process.env.PROXIMO_URL)
 
-app = express.createServer(
-  express.logger())
-
-app.get "/*", (req, res) ->
-  headers =
-    "Proxy-Authorization": "Basic #{new Buffer(proxy.auth).toString("base64")}"
-    "Host": "httpbin.org"
-  delete req.headers.host
-  headers[key] = val for key, val of req.headers
-
   options =
     hostname: proxy.hostname
-    port: proxy.port || 80
-    path: "http://httpbin.org/#{req.params[0]}?#{qs.stringify(req.query)}"
-    headers: headers
+    port:     proxy.port || 80
+    path:     "http://api.someservice.com/endpoint"
+    headers:
+      "Proxy-Authorization": "Basic #{new Buffer(proxy.auth).toString("base64")}"
 
-  http.get options, (httpbin_res) ->
-    res.writeHead httpbin_res.statusCode, httpbin_res.headers
-    httpbin_res.pipe(res)
-puerto = process.env.PORT || 5000
-app.listen puerto
+  http.get options, (res) ->
+    console.log "status code", res.statusCode
+    console.log "headers", res.headers
