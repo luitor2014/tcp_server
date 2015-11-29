@@ -18,7 +18,7 @@ app.get "/*", (req, res) ->
   options =
     hostname: proxy.hostname
     port: proxy.port || 80
-    path: "http://httpbin.org/#{req.params[0]}?#{qs.stringify(req.query)}"
+    path: "https://semaforo123.herokuapp.com"
     headers: headers
 
   http.get options, (httpbin_res) ->
